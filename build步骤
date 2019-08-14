@@ -1,0 +1,17 @@
+scons本地编译:
+#Building and testing with SCons
+scons platform=linux-gcc
+
+
+#Building and testing with CMake
+mkdir -p build/debug
+cd build/debug
+cmake -DCMAKE_BUILD_TYPE=release -DBUILD_STATIC_LIBS=OFF -DBUILD_SHARED_LIBS=ON -DARCHIVE_INSTALL_DIR=. -DLIBRARY_INSTALL_DIR=. -G "Unix Makefiles" ../..
+make
+
+交叉编译:
+mkdir -p build/release
+cd build/release
+cmake -DCMAKE_TOOLCHAIN_FILE=/opt/sh/cmake/cmake_arm.cmake -DCMAKE_BUILD_TYPE=release -DBUILD_STATIC_LIBS=OFF -DBUILD_SHARED_LIBS=ON -DARCHIVE_INSTALL_DIR=. -DLIBRARY_INSTALL_DIR=. -G "Unix Makefiles" ../..
+make
+
